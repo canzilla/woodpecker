@@ -8,7 +8,7 @@ Enzyme.configure({ adapter: new Adapter() });
 const defaultProps = { open: false};
 
 const setup = (props) => {
-  const testProps = {...defaultProps, props};
+  const testProps = {...defaultProps, ...props};
   return shallow(<MessageBox {...testProps}/>);
 };
 
