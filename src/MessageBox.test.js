@@ -20,24 +20,24 @@ test("renders wo error", () => {
 
 test("does not render", () => {
   const wrapper = setup({open: false});
-  const messageBoxComponent = wrapper.dive().find('[test-attr="snackbar-component"]');
+  const messageBoxComponent = wrapper.find('[test-attr="snackbar-component"]');
   expect(messageBoxComponent.length).toBe(0);
 });
 
 test("shows error message on failure", () => {
   const wrapper = setup({severity: "error"});
-  const messageBoxComponent = wrapper.dive().dive().find('[severity="error"]');
+  const messageBoxComponent = wrapper.find('[severity="error"]');
   expect(messageBoxComponent.length).toBe(1);
 });
 
 test("shows success message on success", () => {
   const wrapper = setup({severity: "success"});
-  const messageBoxComponent = wrapper.dive().dive().find('[severity="success"]');
+  const messageBoxComponent = wrapper.find('[severity="success"]');
   expect(messageBoxComponent.length).toBe(1)
 });
 
 test("does not show success message on failure", () => {
   const wrapper = setup({severity: "error"});
-  const messageBoxComponent = wrapper.dive().dive().find('[severity="success"]');
+  const messageBoxComponent = wrapper.find('[severity="success"]');
   expect(messageBoxComponent.length).toBe(0)
 });
