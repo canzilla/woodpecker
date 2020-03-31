@@ -8,7 +8,7 @@ export default function App() {
     <div className="App">
       <h1>Hey There!</h1>
       <TextBoxes />
-      <MessageBox />
+      <MessageBox open={false} severity="error" />
     </div>
   );
 }
