@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -19,6 +19,7 @@ function TextBoxes (props) {//todo bunu sonra state'ten alacagız
       defaultValue={props.objectToDisplay[attr]}
       key={index} 
       variant="outlined"
+      size="small"
       />
   )
 
