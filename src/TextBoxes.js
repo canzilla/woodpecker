@@ -15,7 +15,7 @@ function TextBoxes (props) {//todo bunu sonra state'ten alacagız
   const classes = useStyles();
   const textBox = Object.keys(props.objectToDisplay).map((attr, index)  => 
     <TextField 
-      test-attr="text-box-span"
+      test-attr="text-fields"
       defaultValue={props.objectToDisplay[attr]}
       key={index} 
       variant="outlined"
