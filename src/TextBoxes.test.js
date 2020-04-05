@@ -21,4 +21,10 @@ test('text box renders wo error', () => {
   const wrapper = setup();
   const textBoxesComponent = wrapper.find('[test-attr="text-boxes-div"]');
   expect(textBoxesComponent.length).toBe(1);
+});
+
+test('number of text fields equal to number of attributes in the prop', () => {
+  const wrapper = setup();
+  const textBoxesComponent = wrapper.find('[test-attr="text-fields"]');
+  expect(textBoxesComponent.length).toBe(4);
 })
