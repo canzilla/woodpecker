@@ -1,9 +1,10 @@
 import React from "react";
 
-import TextBoxes from './TextBoxes';
-import MessageBox from './MessageBox';
-import Submit from './Submit';
+/**import TextBoxes from './components/TextBoxes';
+import MessageBox from './components/MessageBox';
+import Submit from './components/Submit';
 import Grid from '@material-ui/core/Grid';
+*/
 import { makeStyles } from "@material-ui/styles";
 
 export default function App() {
@@ -24,7 +25,10 @@ export default function App() {
   const openCloseState = false;
   const classes = styles();
   return (
-    <Grid container direction="row" alignItems="center" className={classes}>
+    <div>
+      FENERBAHCE
+    </div>
+    /**<Grid container direction="row" alignItems="center" className={classes}>
       <Grid item spacing={15}>
        <TextBoxes objectToDisplay={objectFromServer}/>
       </Grid>
@@ -33,5 +37,6 @@ export default function App() {
       </Grid>
       <MessageBox open={openCloseState} openseverity="error" />
     </Grid>
+    */
   );
 }

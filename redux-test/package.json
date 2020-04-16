@@ -12,7 +12,10 @@
     "@material-ui/lab": "4.0.0-alpha.46",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "react-test-renderer": "^16.13.1"
+    "react-test-renderer": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.9.0",
@@ -23,6 +26,7 @@
     "enzyme-adapter-react-16": "1.15.2",
     "html-webpack-plugin": "^4.0.2",
     "jest": "^25.2.3",
+    "jest-enzyme": "^7.1.2",
     "typescript": "3.3.3",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
