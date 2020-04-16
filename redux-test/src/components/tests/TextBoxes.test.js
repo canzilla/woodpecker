@@ -63,3 +63,27 @@ describe('render', () => {
   });
   
 });
+
+describe('typing text', () => {
+  /**let store;
+  const object = {
+    objectForDisplay: {
+      name: 'Çağrı',
+      surname: 'Yenice'
+    }
+  };
+  const initialState = { objectForDisplay: {} };
+  beforeEach(() => {
+    store = storeFactory(initialState);
+  });*/
+  test('text is equal state text', () => {
+    /**const wrapper = setup();
+    wrapper.setState(object);
+    console.log(object);
+    const newState = store.getState();
+    const objectForDisplayProp = wrapper.instance().props.objectForDisplay;
+    console.log(newState);
+    console.log(objectForDisplayProp);
+    expect(object.objectForDisplay).toStrictEqual(newState.objectForDisplay);*/
+  });
+});
