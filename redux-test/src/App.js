@@ -14,6 +14,7 @@ const objectFromServer = {
 
 export class App extends Component {
   componentWillMount(){
+    //TODO send request to service and than call dispatchObjectForDisplay method with response of the that request
     this.props.dispatchObjectForDisplay(objectFromServer);
   }
 
@@ -34,7 +35,7 @@ export class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { };
+  return {};
 }
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
-import { objectForDisplay } from '../actions/action';
+import { objectForDisplay, isInformationTyped } from '../actions/action';
 
 export class TextBoxes extends Component {
   constructor(props) {
@@ -23,6 +23,7 @@ export class TextBoxes extends Component {
       objectForDisplay: object
     });
     this.props.dispatchObjectForDisplay(object);
+    this.props.isInformationTyped(true);
   }
 
   render() {
@@ -54,7 +55,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchObjectForDisplay: (object) => dispatch(objectForDisplay(object))
+    dispatchObjectForDisplay: (object) => dispatch(objectForDisplay(object)),
+    isInformationTyped: (isTyped) => dispatch(isInformationTyped(isTyped))
   };
 }
 

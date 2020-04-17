@@ -83,11 +83,17 @@ describe('typing text', () => {
     component.simulate('change', { target: { value: 'Çağrı' } });
     expect(wrapper.state('objectForDisplay').name).toEqual('Çağrı');
   });
-  test('text box on change method successfuly update global state with action dispatching', () => {
+  test('text box on change method successfuly update object for display value on global state with action dispatching', () => {
     const component = findComponentByAttribute(wrapper, 'text-box-name');
     component.simulate('change', { target: { value: 'Çağrı' } });
     const newState = store.getState();
     expect(newState.objectForDisplay.name).toEqual('Çağrı');
+  });
+  test('text box on change method successfuly update is information typed value on global state with action dispatching', () => {
+    const component = findComponentByAttribute(wrapper, 'text-box-name');
+    component.simulate('change', { target: { value: 'Çağrı' } });
+    const newState = store.getState();
+    expect(newState.isInformationTyped).toBe(true);
   });
   test('text boxes component props successfuly updated from global state', () => {
     const component = findComponentByAttribute(wrapper, 'text-box-name');

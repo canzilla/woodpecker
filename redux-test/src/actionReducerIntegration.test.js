@@ -16,10 +16,7 @@ describe('objectForDisplay action dispatcher', () => {
         test('updates state corectly', () => {
             store.dispatch(objectForDisplay(nonEmptyObject));
             const newState = store.getState();
-            const expectedState = {
-                objectForDisplay: nonEmptyObject
-            };
-            expect(newState).toEqual(expectedState);
+            expect(newState.objectForDisplay).toEqual(nonEmptyObject);
         });
     });
 });
