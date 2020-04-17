@@ -3,14 +3,7 @@ import { shallow, mount } from 'enzyme';
 import TextBoxes from '../TextBoxes';
 import { storeFactory, findComponentByAttribute, findComponentChildrenByAttribute } from '../../../test/testUtils';
 
-const defaultProps = { objectForDisplay:{} };
-
-/**const setup = (props) => {
-  const combinedProps = {...defaultProps, ...props};
-  return shallow(<TextBoxes {...combinedProps}/>);
-}*/
-
-const setup = ( initialState = {} ) => {
+const setup = (initialState = {}) => {
   const store = storeFactory(initialState);
   const wrapper = shallow(<TextBoxes store={store} />).dive().dive();
   return wrapper;
@@ -39,11 +32,11 @@ describe('render', () => {
   describe('object for display has been fetch', () => {
     let wrapper;
     beforeEach(() => {
-      const initialState = { 
+      const initialState = {
         objectForDisplay: {
           name: "",
           surname: ""
-        } 
+        }
       };
       wrapper = setup(initialState);
     });
@@ -61,29 +54,55 @@ describe('render', () => {
       expect(componentChildren).toHaveLength(2);
     });
   });
-  
+
 });
 
 describe('typing text', () => {
-  /**let store;
-  const object = {
-    objectForDisplay: {
-      name: 'Çağrı',
-      surname: 'Yenice'
-    }
-  };
-  const initialState = { objectForDisplay: {} };
+  let wrapper;
+  let store;
   beforeEach(() => {
+    const initialState = {
+      objectForDisplay: {
+        name: '',
+        surname: ''
+      }
+    };
     store = storeFactory(initialState);
-  });*/
-  test('text is equal state text', () => {
-    /**const wrapper = setup();
-    wrapper.setState(object);
-    console.log(object);
+    wrapper = shallow(<TextBoxes store={store} />).dive().dive();
+  });
+  test('render text box for object for display', () => {
+    const component = findComponentByAttribute(wrapper, 'text-box-name');
+    expect(component.length).toBe(1);
+  });
+  test('text box prop value is equal initial value', () => {
+    const component = findComponentByAttribute(wrapper, 'text-box-name');
+    expect(component.prop('value')).toEqual('');
+  });
+  test('text box on change method successfuly update local state', () => {
+    const component = findComponentByAttribute(wrapper, 'text-box-name');
+    component.simulate('change', { target: { value: 'Çağrı' } });
+    expect(wrapper.state('objectForDisplay').name).toEqual('Çağrı');
+  });
+  test('text box on change method successfuly update global state with action dispatching', () => {
+    const component = findComponentByAttribute(wrapper, 'text-box-name');
+    component.simulate('change', { target: { value: 'Çağrı' } });
     const newState = store.getState();
+    expect(newState.objectForDisplay.name).toEqual('Çağrı');
+  });
+  test('text boxes component props successfuly updated from global state', () => {
+    const component = findComponentByAttribute(wrapper, 'text-box-name');
+    component.simulate('change', { target: { value: 'Çağrı' } });
+    const newState = store.getState();
+    wrapper = setup(newState);
     const objectForDisplayProp = wrapper.instance().props.objectForDisplay;
-    console.log(newState);
-    console.log(objectForDisplayProp);
-    expect(object.objectForDisplay).toStrictEqual(newState.objectForDisplay);*/
+    expect(objectForDisplayProp.name).toStrictEqual('Çağrı');
+  });
+  test('text box value is equal to typing value', () => {
+    let component = findComponentByAttribute(wrapper, 'text-box-name');
+    component.simulate('change', { target: { value: 'Çağrı' } });
+    const newState = store.getState();
+    wrapper = setup(newState);
+    component = findComponentByAttribute(wrapper, 'text-box-name');
+    expect(component.props().value).toEqual('Çağrı');
   });
 });
