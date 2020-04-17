@@ -28,6 +28,7 @@ export class App extends Component {
           <Grid item spacing={15}>
             <Submit />
           </Grid>
+          <MessageBox />
         </Grid>
       </div>
     );

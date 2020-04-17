@@ -15,7 +15,6 @@ const setup = (props) => {
 
 test("renders wo error", () => {
   const wrapper = setup();
-  console.log(wrapper.debug());
   const messageBoxComponent = wrapper.find('[test-attr="message-box-div"]');
   expect(messageBoxComponent.length).toBe(1);
 });
@@ -29,7 +28,6 @@ test("does not render", () => {
 test("shows error message on failure", () => {
   const wrapper = setup({severity: "error"});
   const messageBoxComponent = wrapper.find('[test-attr="snackbar-component"]').dive().find('[severity="error"]');
-  console.log(messageBoxComponent.debug());
   expect(messageBoxComponent.length).toBe(1);
 });
 

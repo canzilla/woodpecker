@@ -9,7 +9,7 @@ export function isInformationTyped( state = false, action ) {
     }
 }
 
-export function statusOfSending(state = '', action) {
+export function statusOfSending(state = { status: '', open: false}, action) {
     switch(action.type) {
         case actionTypes.STATUS_OF_SENDING:
             return action.statusOfSending;

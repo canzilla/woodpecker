@@ -29,6 +29,10 @@ export function statusOfSending(statusOfSending){
 export function sendTypedInformationToService(object){
     return function(dispatch) {
         //TODO change with axios
-        dispatch(statusOfSending('FAIL'));
+        const status = {
+            status: 'info',
+            open: true
+        }
+        dispatch(statusOfSending(status));
     };
 }
