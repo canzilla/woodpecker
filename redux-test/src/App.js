@@ -1,37 +1,48 @@
-import React from "react";
-
-import TextBoxes from './TextBoxes';
-import MessageBox from './MessageBox';
-import Submit from './Submit';
+import React, { Component } from "react";
+import { connect } from 'react-redux';
+import TextBoxes from './components/TextBoxes';
+import MessageBox from './components/MessageBox';
+import Submit from './components/Submit';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from "@material-ui/styles";
+import { objectForDisplay } from './actions/action';
 
-export default function App() {
+const objectFromServer = {
+  name : "Çağrı",
+  surname : "Yenice",
+  country : "Nazilli"
+}
 
-  const styles = makeStyles((theme) =>({
-    root: {
-      flexGrow: 1,
-    },
-  }));
-
-  const objectFromServer = {
-    "thizz" : "this",
-    "shall" : "shall",
-    "pass" : "pass",
-    "too" : "too"
+export class App extends Component {
+  componentWillMount(){
+    //TODO send request to service and than call dispatchObjectForDisplay method with response of the that request
+    this.props.dispatchObjectForDisplay(objectFromServer);
   }
 
-  const openCloseState = false;
-  const classes = styles();
-  return (
-    <Grid container direction="row" alignItems="center" className={classes}>
-      <Grid item spacing={15}>
-       <TextBoxes objectToDisplay={objectFromServer}/>
-      </Grid>
-      <Grid item spacing={15}>
-       <Submit />
-      </Grid>
-      <MessageBox open={openCloseState} openseverity="error" />
-    </Grid>
-  );
+  render() {
+    return (
+      <div>
+        <Grid container direction="row" alignItems="center">
+          <Grid item spacing={15}>
+            <TextBoxes/>
+          </Grid>
+          <Grid item spacing={15}>
+            <Submit />
+          </Grid>
+          <MessageBox />
+        </Grid>
+      </div>
+    );
+  }
 }
+
+const mapStateToProps = (state) => {
+  return {};
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchObjectForDisplay: (object) => dispatch(objectForDisplay(object))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
