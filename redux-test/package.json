@@ -31,7 +31,8 @@
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
-    "axios": "^0.19.2"
+    "axios": "^0.19.2",
+    "moxios": "^0.4.0"
   },
   "scripts": {
     "start": "webpack-dev-server --mode development",

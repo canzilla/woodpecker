@@ -1,5 +1,8 @@
-import { objectForDisplay, isInformationTyped, statusOfSending } from '../action';
+import { objectForDisplay, isInformationTyped, statusOfSending, sendTypedInformationToService } from '../action';
+import { storeFactory } from '../../../test/testUtils.js';
 import { actionTypes } from '../actionTypes';
+import moxios from 'moxios';
+import { fail } from 'assert';
 
 test('returns initial value of object for display', () => {
   const newValue = objectForDisplay({});
@@ -25,3 +28,24 @@ test('returns new value of status of sending', () => {
   const newValue = statusOfSending({ status: 'info', open: true });
   expect(newValue).toStrictEqual({ statusOfSending: { status: 'info', open: true }, type: actionTypes.STATUS_OF_SENDING });
 });
+test('message box state according to server response on save', () =>{
+  const store = storeFactory();
+  const failResponse = {
+    status: "error",
+    open: true
+  };
+
+  moxios.wait(() => {
+    const request = moxios.requests.mostRecent();
+    request.respondWith({
+      status: 200,
+      response: failResponse
+    })
+  })
+
+  return store.dispatch(sendTypedInformationToService())
+  .then(() => {
+    const newState = store.getState();
+    expect(newState.statusOfSending).toStrictEqual(failResponse);
+  })
+})
