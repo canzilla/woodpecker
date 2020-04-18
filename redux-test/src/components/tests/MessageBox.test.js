@@ -11,17 +11,21 @@ const setup = (initialState = {}) => {
 
 describe('render', () => {
   let wrapper;
+
   beforeEach(() => {
     wrapper = setup();
   });
+
   test('render component message box', () => {
     const component = findComponentByAttribute(wrapper, 'component-message-box');
     expect(component.length).toBe(1);
   });
+
   test('render message box snackbar', () => {
     const component = findComponentByAttribute(wrapper, 'message-box-snackbar');
     expect(component.length).toBe(1);
   });
+
   test('render message box alert', () => {
     const component = findComponentByAttribute(wrapper, 'message-box-alert');
     expect(component.length).toBe(1);
@@ -34,11 +38,11 @@ describe('getting data from global state', () => {
     store = storeFactory();
   });
   test('getting statusOfSending', () => {
-    store.dispatch(statusOfSending({ status: 'info', open: true }));
+    store.dispatch(statusOfSending({ status: '', open: false }));
     const newState = store.getState();
     const wrapper = setup(newState);
     const isInformationTypedProp = wrapper.instance().props.statusOfSending;
-    expect(isInformationTypedProp).toStrictEqual({ status: 'info', open: true });
+    expect(isInformationTypedProp).toStrictEqual({ status: '', open: false });
   });
 });
 
@@ -55,6 +59,7 @@ describe('on close fired', () => {
     store = storeFactory(initialState);
     wrapper = shallow(<MessageBox store={store} />).dive().dive();
   });
+
   test('close', () => {
     const component = findComponentByAttribute(wrapper, 'message-box-snackbar');
     component.simulate('close');

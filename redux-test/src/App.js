@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withStyles } from '@material-ui/styles';
 import { connect } from 'react-redux';
 import TextBoxes from './components/TextBoxes';
 import MessageBox from './components/MessageBox';
@@ -12,6 +13,12 @@ const objectFromServer = {
   country : "Nazilli"
 }
 
+const styles = theme =>({
+  root: {
+    flexGrow: 1,
+  },
+});
+
 export class App extends Component {
   componentWillMount(){
     //TODO send request to service and than call dispatchObjectForDisplay method with response of the that request
@@ -19,13 +26,14 @@ export class App extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <div>
-        <Grid container direction="row" alignItems="center">
-          <Grid item spacing={15}>
+        <Grid container direction="row" alignItems="center" className={classes.root} spacing={0}>
+          <Grid item xs={8}>
             <TextBoxes/>
           </Grid>
-          <Grid item spacing={15}>
+          <Grid item xs={2}>
             <Submit />
           </Grid>
           <MessageBox />
@@ -45,4 +53,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(App));

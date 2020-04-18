@@ -1,4 +1,5 @@
 import { actionTypes } from './actionTypes';
+import axios from 'axios';
 
 /**
  * Function to dispatch response and sending to service value of AXIOS
@@ -28,11 +29,17 @@ export function statusOfSending(statusOfSending){
 
 export function sendTypedInformationToService(object){
     return function(dispatch) {
-        //TODO change with axios
-        const status = {
-            status: 'info',
-            open: true
-        }
-        dispatch(statusOfSending(status));
+        return axios.post('/saveThis', object)
+        .then((response)=>{
+            dispatch(statusOfSending(response.data));
+        })
+        .catch(function(err){
+            console.log("content could not be saved", err);
+            let errStatus = {
+                status: 'error',
+                open: true
+            }
+            dispatch(statusOfSending(errStatus));
+        });
     };
 }
