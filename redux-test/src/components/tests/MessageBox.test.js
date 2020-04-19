@@ -49,6 +49,7 @@ describe('getting data from global state', () => {
 describe('on close fired', () => {
   let wrapper;
   let store;
+  let spy;
   beforeEach(() => {
     const initialState = {
       statusOfSending: {
@@ -59,7 +60,18 @@ describe('on close fired', () => {
     store = storeFactory(initialState);
     wrapper = shallow(<MessageBox store={store} />).dive().dive();
   });
-
+  test('close function not called after fired', () => {
+    spy = jest.spyOn(wrapper.instance(), 'handleClose');
+    wrapper.instance().forceUpdate();
+    expect(spy).not.toHaveBeenCalled();
+  });
+  test('close function called after fired', () => {
+    spy = jest.spyOn(wrapper.instance(), 'handleClose');
+    wrapper.instance().forceUpdate();
+    const component = findComponentByAttribute(wrapper, 'message-box-snackbar');
+    component.simulate('close');
+    expect(spy).toHaveBeenCalled();
+  });
   test('close', () => {
     const component = findComponentByAttribute(wrapper, 'message-box-snackbar');
     component.simulate('close');

@@ -65,6 +65,7 @@ describe('getting data from global state', () => {
 
 describe('click submit button', () => {
   let wrapper;
+  let spy;
   beforeEach(() => {
     const initialState = {
       isInformationTyped: true,
@@ -74,10 +75,15 @@ describe('click submit button', () => {
       }
     };
     wrapper = setup(initialState);
+    spy = jest.spyOn(wrapper.instance(), 'handleClick');
+    wrapper.instance().forceUpdate();
+  });
+  test('not click', () => {
+    expect(spy).not.toHaveBeenCalled();
   });
   test('click', () => {
     const component = findComponentByAttribute(wrapper, 'submit-button');
     component.simulate('click');
-    expect(wrapper.state().isClicked).toBe(true);
+    expect(spy).toHaveBeenCalled();
   });
 });
