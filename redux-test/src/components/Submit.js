@@ -7,18 +7,11 @@ export class Submit extends Component {
     constructor(props){
         super(props);
 
-        this.state = {
-            isClicked: false
-        };
-
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick(){
         this.props.sendTypedInformationToService(this.props.objectForDisplay);
-        this.setState({
-            isClicked: true
-        })
     }
 
     render() {
@@ -26,7 +19,8 @@ export class Submit extends Component {
         let buttonComponent = isInformationTyped ?
             (
               <Button 
-                element-identifier="submit-button" 
+                element-identifier="submit-button"
+                data-testid="submit-button"
                 variant="contained"
                 onClick={this.handleClick}
               >
@@ -36,7 +30,7 @@ export class Submit extends Component {
             :
             null;
         return (
-            <div element-identifier="component-submit">
+            <div element-identifier="component-submit" data-testid="component-submit">
                 { buttonComponent }
             </div>
         );

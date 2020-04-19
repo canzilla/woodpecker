@@ -29,12 +29,12 @@ export class TextBoxes extends Component {
   render() {
     const objectForDisplay = this.props.objectForDisplay;
     return (
-      <div element-identifier="component-text-boxes">
+      <div element-identifier="component-text-boxes" data-testid="component-text-boxes">
         {
           Object.keys(this.props.objectForDisplay).map((attr, index) =>
             (<TextField
               element-identifier={`text-box-${attr}`}
-              defaultValue={this.props.objectForDisplay[attr]}
+              inputProps={{ "data-testid": `text-box-${attr}`}}
               key={index}
               variant="outlined"
               size="small"

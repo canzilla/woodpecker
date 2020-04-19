@@ -23,14 +23,19 @@ export class MessageBox extends Component{
   render(){
     const status = this.props.statusOfSending;
     return (
-      <div element-identifier="component-message-box">
+      <div element-identifier="component-message-box" data-testid="component-message-box" >
         <Snackbar 
-          element-identifier="message-box-snackbar" 
+          element-identifier="message-box-snackbar"
+          data-testid="message-box-snackbar"
           autoHideDuration={6000} 
           open={status.open} 
           onClose={this.handleClose}
         >
-          <Alert element-identifier= "message-box-alert" severity={status.status}>
+          <Alert
+            element-identifier= "message-box-alert"
+            data-testid="message-box-alert"
+            severity={status.status}
+          >
             Message is {status.status}
           </Alert> 
         </Snackbar>
