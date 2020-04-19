@@ -19,7 +19,8 @@ export class Submit extends Component {
         let buttonComponent = isInformationTyped ?
             (
               <Button 
-                element-identifier="submit-button" 
+                element-identifier="submit-button"
+                data-testid="submit-button"
                 variant="contained"
                 onClick={this.handleClick}
               >
@@ -29,7 +30,7 @@ export class Submit extends Component {
             :
             null;
         return (
-            <div element-identifier="component-submit">
+            <div element-identifier="component-submit" data-testid="component-submit">
                 { buttonComponent }
             </div>
         );
