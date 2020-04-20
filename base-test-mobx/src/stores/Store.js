@@ -4,16 +4,14 @@ import {observable,action } from 'mobx';
 
 class Store {
 
-  @observable objectFromServer  = {}
+  @observable objectToDisplay  = {}
 
   @observable openseverity = "error";
 
   @observable openCloseState = false;
 
-  @observable objectToDisplay = [];
-
-  @action setObjectFromServer = (object) => { 
-    this.objectFromServer = object;
+  @action setObjectToDisplay = (object) => { 
+    this.objectToDisplay = object;
   }
 
   @action setOpenCloseState = (object) => { 
@@ -21,5 +19,4 @@ class Store {
   } 
 }
 
-const store = new Store();
-export default store;
+export default Store;

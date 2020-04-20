@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import {observer} from 'mobx-react-lite';
 import {inject} from 'mobx-react';
+import { TEXT_BOXES_CONTAINER,TEXT_FIELDS } from '../test/DataTestIdTypes.js'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,11 +17,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TextBoxes = inject('Store')(observer(({Store: 
-  { objectToDisplay , objectFromServer }}) => {
+  { objectToDisplay }}) => {
   const classes = useStyles();
-  const textBox = Object.keys(objectFromServer).map((attr, index)  => (
+  const textBox = Object.keys(objectToDisplay).map((attr, index)  => (
     <TextField 
-      test-attr="text-fields"
+      data-testid={TEXT_FIELDS}
+      inputProps={{
+        'data-testid': 'text-input-fields'
+      }}
       defaultValue={objectToDisplay[attr]}
       key={index} 
       variant="outlined"
@@ -28,7 +32,7 @@ const TextBoxes = inject('Store')(observer(({Store:
     />
   ))
   return (
-    <div className={classes.root} test-attr="text-boxes-div">
+    <div className={classes.root} data-testid={TEXT_BOXES_CONTAINER}>
       {textBox}
     </div>
   );
