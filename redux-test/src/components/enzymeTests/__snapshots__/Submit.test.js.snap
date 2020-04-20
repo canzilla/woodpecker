@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`click submit button snapshot testi 1`] = `
+<div
+  data-testid="component-submit"
+  element-identifier="component-submit"
+/>
+`;
