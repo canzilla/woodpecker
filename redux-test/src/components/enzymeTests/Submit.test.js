@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import renderer from 'react-test-renderer';
 import Submit from '../Submit.js';
 import { storeFactory, findComponentByAttribute } from '../../../test/testUtils';
 import { isInformationTyped, objectForDisplay } from '../../actions/action';
@@ -87,4 +88,12 @@ describe('click submit button', () => {
     component.simulate('click');
     expect(spy).toHaveBeenCalled();
   });
+});
+
+test('snapshot testi', () => {
+  const store = storeFactory({});
+  const tree = renderer
+    .create(<Submit store={store} />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
 });

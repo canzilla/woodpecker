@@ -28,8 +28,7 @@ export class Submit extends Component {
               </Button>
               
             )
-            :
-            <Button>hadi ordan</Button>;
+            :null
         return (
             <div element-identifier="component-submit" data-testid="component-submit">
                 { buttonComponent }
