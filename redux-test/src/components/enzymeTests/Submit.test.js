@@ -65,11 +65,7 @@ describe('getting data from global state', () => {
 
 describe('click submit button', () => {
   let wrapper;
-<<<<<<< HEAD:redux-test/src/components/tests/Submit.test.js
-
-=======
   let spy;
->>>>>>> bd992c0af4ad7f935edb58f5635612d0dd465e34:redux-test/src/components/enzymeTests/Submit.test.js
   beforeEach(() => {
     const initialState = {
       isInformationTyped: true,
