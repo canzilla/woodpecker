@@ -31,11 +31,11 @@ const App = inject('Store')(observer(({Store:
 
   const classes = styles();
   return (
-    <Grid container data-testid={GRID_CONTAINER} direction="row" alignItems="center" style={classes}>
-      <Grid container data-testid={GRID_ITEM} item spacing={10}>
+    <Grid container data-testid={GRID_CONTAINER} direction="row" alignItems="center" style={classes} spacing={10}>
+      <Grid data-testid={GRID_ITEM} item >
         <TextBoxes />
       </Grid>
-      <Grid container data-testid={GRID_ITEM} item spacing={10}>
+      <Grid data-testid={GRID_ITEM} item>
         <Submit />
       </Grid>
       <MessageBox />
