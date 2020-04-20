@@ -30,11 +30,12 @@ export class Submit extends Component {
                 variant="contained"
                 onClick={this.handleClick}
               >
-                sadfsadf
+                Save
               </Button>
+              
             )
             :
-            null;
+            <Button>hadi ordan</Button>;
         return (
             <div element-identifier="component-submit">
                 { buttonComponent }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Submit from '../Submit';
+import Submit from '../Submit.js';
 import { storeFactory, findComponentByAttribute } from '../../../test/testUtils';
 import { isInformationTyped, objectForDisplay } from '../../actions/action';
 
@@ -65,6 +65,7 @@ describe('getting data from global state', () => {
 
 describe('click submit button', () => {
   let wrapper;
+
   beforeEach(() => {
     const initialState = {
       isInformationTyped: true,
@@ -75,6 +76,7 @@ describe('click submit button', () => {
     };
     wrapper = setup(initialState);
   });
+
   test('click', () => {
     const component = findComponentByAttribute(wrapper, 'submit-button');
     component.simulate('click');
