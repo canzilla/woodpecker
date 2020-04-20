@@ -61,6 +61,7 @@ describe('render', () => {
 describe('typing text', () => {
   let wrapper;
   let store;
+  let spy;
 
   beforeEach(() => {
     const initialState = {
@@ -81,6 +82,20 @@ describe('typing text', () => {
   test('text box prop value is equal initial value', () => {
     const component = findComponentByAttribute(wrapper, 'text-box-name');
     expect(component.prop('value')).toEqual('');
+  });
+
+  test('text box on change method not called after fired', () => {
+    spy = jest.spyOn(wrapper.instance(), 'handleChange');
+    wrapper.instance().forceUpdate();
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  test('text box on change method called after fired', () => {
+    spy = jest.spyOn(wrapper.instance(), 'handleChange');
+    wrapper.instance().forceUpdate();
+    const component = findComponentByAttribute(wrapper, 'text-box-name');
+    component.simulate('change', { target: { value: 'Çağrı' } });
+    expect(spy).toHaveBeenCalled();
   });
 
   test('text box on change method successfuly update local state', () => {

@@ -65,7 +65,11 @@ describe('getting data from global state', () => {
 
 describe('click submit button', () => {
   let wrapper;
+<<<<<<< HEAD:redux-test/src/components/tests/Submit.test.js
 
+=======
+  let spy;
+>>>>>>> bd992c0af4ad7f935edb58f5635612d0dd465e34:redux-test/src/components/enzymeTests/Submit.test.js
   beforeEach(() => {
     const initialState = {
       isInformationTyped: true,
@@ -75,11 +79,16 @@ describe('click submit button', () => {
       }
     };
     wrapper = setup(initialState);
+    spy = jest.spyOn(wrapper.instance(), 'handleClick');
+    wrapper.instance().forceUpdate();
+  });
+  test('not click', () => {
+    expect(spy).not.toHaveBeenCalled();
   });
 
   test('click', () => {
     const component = findComponentByAttribute(wrapper, 'submit-button');
     component.simulate('click');
-    expect(wrapper.state().isClicked).toBe(true);
+    expect(spy).toHaveBeenCalled();
   });
 });

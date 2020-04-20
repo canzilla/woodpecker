@@ -32,7 +32,8 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
     "axios": "^0.19.2",
-    "moxios": "^0.4.0"
+    "moxios": "^0.4.0",
+    "@testing-library/react": "^10.0.2"
   },
   "scripts": {
     "start": "webpack-dev-server --mode development",
