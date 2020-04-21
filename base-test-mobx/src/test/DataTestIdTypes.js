@@ -1,0 +1,10 @@
+export const MESSAGEBOX_DIV = 'message-box-div';
+export const SNACKBAR_COMPONENT = '"snackbar-component"';
+export const ALERT_COMPONENT = 'alert-component';
+export const TEXT_BOXES_CONTAINER = 'text-boxes-div';
+export const TEXT_FIELDS = 'text-fields';
+export const TEXT_INPUT_FIELDS = 'text-input-fields';
+export const TEST_SUBMIT_DIV = 'test-submit-div';
+export const TEST_SUBMIT_BUTTON = 'test-submit-button';
+export const GRID_CONTAINER = 'app-grid-container';
+export const GRID_ITEM = 'app-grid-item';

@@ -4,13 +4,14 @@ import Snackbar from '@material-ui/core/Snackbar';
 import { Alert } from '@material-ui/lab';
 import {observer} from 'mobx-react-lite';
 import {inject} from 'mobx-react';
+import { MESSAGEBOX_DIV,ALERT_COMPONENT,SNACKBAR_COMPONENT } from '../test/DataTestIdTypes.js'
 
 const MessageBox = inject('Store')(observer(({Store: 
   { openseverity,openCloseState}}) => {
   return (
-    <div test-attr="message-box-div">
-      <Snackbar test-attr="snackbar-component" open={openCloseState}>
-        <Alert test-attr="alert-component" severity={openseverity}>
+    <div data-testid={MESSAGEBOX_DIV}>
+      <Snackbar data-testid={SNACKBAR_COMPONENT} open={openCloseState}>
+        <Alert data-testid={ALERT_COMPONENT} severity={openseverity}>
           Message is 
           {' '}
           {openseverity}

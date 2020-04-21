@@ -1,46 +1,64 @@
 import React from "react";
-import { shallow } from "enzyme";
-import Enzyme from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+/* eslint-disable require-jsdoc */
+import {render } from '@testing-library/react';
+import {Provider} from 'mobx-react';
+import MessageBox from './MessageBox'
+import Store from '../stores/Store';
+import * as DataTestIdTypes from '../test/DataTestIdTypes.js';
+import 'mobx-react-lite/batchingForReactDom';
+import '@testing-library/jest-dom/extend-expect'
 
-import MessageBox from "./MessageBox";
+// beforeEach(() => {
+//   container = document.createElement('div');
+//   document.body.appendChild(container);
+// });
 
-Enzyme.configure({ adapter: new Adapter() });
-const defaultProps = { open: false};
-
-const setup = (props) => {
-  const testProps = {...defaultProps, ...props};
-  return shallow(<MessageBox {...testProps}/>);
-};
-
-test("renders wo error", () => {
-  const wrapper = setup();
-  console.log(wrapper.debug());
-  const messageBoxComponent = wrapper.find('[test-attr="message-box-div"]');
-  expect(messageBoxComponent.length).toBe(1);
+let storeInstance = null;
+afterEach(() => {
+  storeInstance = new Store();
 });
 
-test("does not render", () => {
-  const wrapper = setup({open: false});
-  const messageBoxComponent = wrapper.find('[test-attr="snackbar-component"]');
-  expect(messageBoxComponent.length).toBe(1);
+export const setup = (storeInstance=new Store()) => {
+  return render(  <Provider Store={storeInstance}>
+    <MessageBox />
+  </Provider>);
+}
+
+
+test("renders MessageBox without error", () => {
+  storeInstance=new Store();
+  const {getByTestId} = setup(storeInstance);
+  const component = getByTestId(DataTestIdTypes.MESSAGEBOX_DIV);
+  expect(component).toBeInTheDocument();
 });
 
-test("shows error message on failure", () => {
-  const wrapper = setup({severity: "error"});
-  const messageBoxComponent = wrapper.find('[test-attr="snackbar-component"]').dive().find('[severity="error"]');
-  console.log(messageBoxComponent.debug());
-  expect(messageBoxComponent.length).toBe(1);
+test("renders Snackbar without error when its state us `true`", () => {
+  storeInstance.openCloseState=true;
+  const {queryByTestId} = setup(storeInstance);
+  const component = queryByTestId(DataTestIdTypes.SNACKBAR_COMPONENT);
+  // QueryByTestId returns null when the element could not be found,
+  // getByTestId throws and error when the element could not be found .
+  // const component = renderResult.getByTestId(DataTestIdTypes.SNACKBAR_COMPONENT);
+  expect(component).toBeInTheDocument();
 });
 
-test("shows success message on success", () => {
-  const wrapper = setup({severity: "success"});
-  const messageBoxComponent = wrapper.find('[test-attr="snackbar-component"]').dive().find('[severity="success"]');
-  expect(messageBoxComponent.length).toBe(1);
+test("does not render Snackbar, when its state us `false`", () => {
+  const {queryByTestId} = setup(storeInstance);
+  const component = queryByTestId(DataTestIdTypes.SNACKBAR_COMPONENT);
+  expect(component).toBeNull();
 });
 
-test("does not show success message on failure", () => {
-  const wrapper = setup({severity: "error"});
-  const messageBoxComponent = wrapper.find('[test-attr="snackbar-component"]').dive().find('[severity="success"]');
-  expect(messageBoxComponent.length).toBe(0);
+// Alert severity must be one of them
+// 'success' | 'info' | 'warning' | 'error'
+// Otherwise Alert component propCheck fails,
+
+test("renders Alert Component with `error` severity", () => {
+  storeInstance.openCloseState=true;
+  storeInstance.openseverity = "error"
+  const { queryByText,getByTestId } = setup(storeInstance);
+  let component = getByTestId(DataTestIdTypes.ALERT_COMPONENT);
+  expect(component).toBeInTheDocument();
+  component = queryByText('error', { exact: false });
+  expect(component).not.toBeNull();
 });
+
